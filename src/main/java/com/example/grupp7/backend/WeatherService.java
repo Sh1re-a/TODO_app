@@ -18,4 +18,6 @@ public class WeatherService {
     public List<Weather> getWeather() {
         return weatherRepository.findAll();
     }
+
+
 }
