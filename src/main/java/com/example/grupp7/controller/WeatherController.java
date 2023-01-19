@@ -1,8 +1,9 @@
-package com.example.grupp7.backend;
+package com.example.grupp7.controller;
 
+import com.example.grupp7.service.WeatherService;
+import com.example.grupp7.model.Weather;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

@@ -1,4 +1,4 @@
-package com.example.grupp7.backend;
+package com.example.grupp7.model;
 
 import jakarta.persistence.*;
 

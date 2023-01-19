@@ -1,5 +1,7 @@
-package com.example.grupp7.backend;
+package com.example.grupp7.service;
 
+import com.example.grupp7.model.Weather;
+import com.example.grupp7.repo.WeatherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
