@@ -32,4 +32,11 @@ public class TodoController {
     public void deleteTodo(@PathVariable("todoId") Long todoId){
         todoService.deleteTodo(todoId);
     }
+
+    @PutMapping(path = "{todoId}")
+    public void updateTodo(
+            @PathVariable("todoId") Long todoId,
+            @RequestParam(required = false) String description){
+        todoService.updateTodo(todoId, description);
+    }
 }
