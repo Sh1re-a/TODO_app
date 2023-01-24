@@ -3,7 +3,7 @@ package stigrupp7.todo.model;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = "todo")
 public class Todo {
 
     @Id

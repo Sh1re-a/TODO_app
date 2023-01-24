@@ -24,7 +24,7 @@ public class TodoController {
     }
 
     @PostMapping
-    public void addNewTodo(@PathVariable Todo todo){
+    public void addNewTodo(@RequestBody Todo todo){
         todoService.addNewTodo(todo);
     }
 
