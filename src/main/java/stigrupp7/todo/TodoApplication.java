@@ -1,13 +1,13 @@
-package com.example.grupp7;
+package stigrupp7.todo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WeatherAppApplication {
+public class TodoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WeatherAppApplication.class, args);
+		SpringApplication.run(TodoApplication.class, args);
 	}
 
 }
