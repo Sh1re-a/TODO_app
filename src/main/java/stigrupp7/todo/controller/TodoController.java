@@ -1,9 +1,7 @@
 package stigrupp7.todo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import stigrupp7.todo.model.Todo;
 import stigrupp7.todo.service.TodoService;
 
@@ -23,5 +21,15 @@ public class TodoController {
     @GetMapping
     public List<Todo> getAllTodos(){
         return todoService.getAllTodos();
+    }
+
+    @PostMapping
+    public void addNewTodo(@PathVariable Todo todo){
+        todoService.addNewTodo(todo);
+    }
+
+    @DeleteMapping(path = "{todoId}")
+    public void deleteTodo(@PathVariable("todoId") Long todoId){
+        todoService.deleteTodo(todoId);
     }
 }

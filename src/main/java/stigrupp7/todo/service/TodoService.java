@@ -20,4 +20,13 @@ public class TodoService {
     public List<Todo> getAllTodos() {
         return todoRepository.findAll();
     }
+
+    public void addNewTodo(Todo todo) {
+        todoRepository.save(todo);
+    }
+
+
+    public void deleteTodo(Long todoId) {
+        todoRepository.deleteById(todoId);
+    }
 }
