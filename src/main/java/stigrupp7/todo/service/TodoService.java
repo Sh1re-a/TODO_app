@@ -1,5 +1,6 @@
 package stigrupp7.todo.service;
 
+import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,7 @@ import org.springframework.stereotype.Service;
 import stigrupp7.todo.model.Todo;
 import stigrupp7.todo.repository.TodoRepository;
 
-import javax.transaction.Transactional;
+
 import java.util.List;
 import java.util.Objects;
 

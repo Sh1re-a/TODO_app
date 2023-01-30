@@ -1,6 +1,8 @@
 package stigrupp7.todo.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
+
 
 @Entity
 @Table(name = "todo")
