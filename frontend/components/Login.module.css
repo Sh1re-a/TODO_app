@@ -1,0 +1,98 @@
+.login{
+    margin-top: 389px;
+    margin-left: 51px;
+    width: 312px;
+    height: 143px;
+    color: white;
+}
+
+.emailInput{
+    border: 3px solid #DD8A23;
+    height: 59px;
+    width: 312px;
+    border-radius: 30px;
+    background: none;
+}
+
+.emailInput::placeholder {
+    font-size: 15px;
+    font-weight: 600;
+    color: #DD8A23;
+    padding-left: 30px;
+
+}
+
+.passwordInput{
+    border: 3px solid #E4E4E5;
+    height: 59px;
+    width: 312px;
+    border-radius: 30px;
+    margin-top: 25px;
+    background: none;
+}
+
+.passwordInput::placeholder {
+    font-size: 15px;
+    font-weight: 600;
+    color: #E4E4E5;
+    padding-left: 30px;
+
+}
+
+
+.fortgotBtn{
+position: absolute;
+width: 159px;
+height: 14px;
+left: 235px;
+top: 748px;
+    
+font-weight: 600;
+font-size: 14px;
+color: #DD8A23;
+
+}
+
+.fuckYou{
+position: absolute;
+width: 220px;
+height: 63px;
+left: 28px;
+top: 71px;
+
+font-weight: 600;
+font-size: 50px;
+line-height: 100%;
+
+color: #FFFFFF;
+}
+
+
+
+
+
+
+.signupBtn {
+    font-size: 50px;
+    font-weight: 600;
+    color: white;
+    position: absolute;
+    width: 124px;
+    height: 89x;
+    left: 36px;
+    top: 724px;
+}
+
+
+
+
+
+.nextBtn {
+    width: 115px;
+    height: 53px;
+    background: #E69023;
+    border-radius: 30px;
+    position: absolute;
+    top: 785px;
+    left: 248px;
+}
