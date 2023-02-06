@@ -12,12 +12,14 @@ export const Signup = () => {
 
         <div className={styles.login}>
         <input className={styles.emailInput} placeholder="Email Address"></input>
+        <input className={styles.passwordInput} placeholder="DisplayName"></input>
         <input className={styles.passwordInput} placeholder="Password"></input>
+        <input className={styles.passwordInput} placeholder="Confirm Password"></input>
        </div>
 
-       <div className={styles.fortgotBtn}>FORGOT PASSWORD?</div>
-       <div className={styles.signupBtn}>Sign Up</div>
-       <div className={styles.nextBtn}></div>
+       
+       
+       <div className={styles.nextBtn}> Sign Up</div>
        </>
   )
 }

@@ -1,4 +1,6 @@
-
+.group{
+    z-index: 1;
+}
 
 .circle1{
     background-color: #DD8A23;
