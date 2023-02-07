@@ -21,11 +21,12 @@ export const Login = () => {
       body: JSON.stringify({ email, password }),
     });
     const data = await response.json();
-    if (data.success) {
+    if (data !== null) {
       localStorage.setItem("jwt", data.jwt);
       console.log("Det gick bra bror")
     } else {
         console.log("Det e cutt bror")
+        console.log(data)
     } 
     
 }
