@@ -3,6 +3,7 @@ import Background from './Background'
 //import { useAuth } from '../context/AuthContext'
 import styles from './Login.module.css'
 import { AiOutlineArrowRight } from 'react-icons/ai'
+import { AiOutlineUser } from 'react-icons/ai'
 
 
 
