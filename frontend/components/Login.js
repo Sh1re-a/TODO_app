@@ -7,30 +7,29 @@ import { AiOutlineUser } from 'react-icons/ai'
 
 
 
+export const Login = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-export default function Login() {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [error, setError] = useState(null)
-    const [isLoggingIn, setIsLoggingIn] = useState(true)
-
+    const handleSubmit = async (event) => {
+    event.preventDefault();
+    const response = await fetch("http://localhost:8080/api/v1/auth/authenticate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+    const data = await response.json();
+    if (data.success) {
+      localStorage.setItem("jwt", data.jwt);
+      console.log("Det gick bra bror")
+    } else {
+        console.log("Det e cutt bror")
+    } 
     
-
-    async function submitHandler() {
-        if (!email || !password) {
-            setError('Please enter email and password')
-            return
-        }
-        if (isLoggingIn) {
-            try {
-                await login(email, password)
-            } catch (err) {
-                setError('Incorrect email or password')
-            }
-            return
-        }
-        await signup(email, password)
-    }
+}
+    
 
     return (
         <>
@@ -47,14 +46,14 @@ export default function Login() {
             width: "19px",
             height: "19px",
         }}></AiOutlineUser>
-        <input className={styles.emailInput} placeholder="Email Address">
+        <input className={styles.emailInput} placeholder="Email Address" onChange={(event) => setEmail(event.target.value)}>
         </input>
-        <input className={styles.passwordInput} placeholder="Password"></input>
+        <input className={styles.passwordInput} placeholder="Password" onChange={(event) => setPassword(event.target.value)}></input>
        </div>
 
        <div className={styles.fortgotBtn}>FORGOT PASSWORD?</div>
        <div className={styles.signupBtn}>Sign Up</div>
-       <div className={styles.nextBtn}>
+       <div className={styles.nextBtn}  onClick={handleSubmit}>
         <AiOutlineArrowRight
         style={{
             color: "white",
@@ -65,8 +64,9 @@ export default function Login() {
         
         ></AiOutlineArrowRight>
        </div>
-       
        </>
-       
-    )
+    
+    ) 
+
 }
+

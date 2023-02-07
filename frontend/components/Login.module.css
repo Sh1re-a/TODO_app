@@ -12,6 +12,7 @@
     width: 312px;
     border-radius: 30px;
     background: none;
+    color:white;
 }
 
 .emailInput::placeholder {
@@ -19,6 +20,7 @@
     font-weight: 600;
     color: #DD8A23;
     padding-left: 30px;
+    margin-left: 30px;
 
 }
 
@@ -29,6 +31,7 @@
     border-radius: 30px;
     margin-top: 25px;
     background: none;
+    color: white;
 }
 
 .passwordInput::placeholder {
@@ -36,6 +39,10 @@
     font-weight: 600;
     color: #E4E4E5;
     padding-left: 30px;
+
+}
+
+.passwordInput {
 
 }
 
