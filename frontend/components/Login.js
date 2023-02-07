@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import Background from './Background'
 //import { useAuth } from '../context/AuthContext'
 import styles from './Login.module.css'
+import { AiOutlineArrowRight } from 'react-icons/ai'
+
+
 
 
 export default function Login() {
@@ -35,13 +38,33 @@ export default function Login() {
         <div className={styles.fuckYou}>Welcome</div>
 
         <div className={styles.login}>
-        <input className={styles.emailInput} placeholder="Email Address"></input>
+        <AiOutlineUser style={{
+            position: 'absolute',
+            top: '409px',
+            left: '319px',
+            color: '#E69023',
+            width: "19px",
+            height: "19px",
+        }}></AiOutlineUser>
+        <input className={styles.emailInput} placeholder="Email Address">
+        </input>
         <input className={styles.passwordInput} placeholder="Password"></input>
        </div>
 
        <div className={styles.fortgotBtn}>FORGOT PASSWORD?</div>
        <div className={styles.signupBtn}>Sign Up</div>
-       <div className={styles.nextBtn}></div>
+       <div className={styles.nextBtn}>
+        <AiOutlineArrowRight
+        style={{
+            color: "white",
+            width: "24px",
+            height: "24px",
+
+        }}
+        
+        ></AiOutlineArrowRight>
+       </div>
+       
        </>
        
     )

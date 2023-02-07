@@ -95,4 +95,14 @@ color: #FFFFFF;
     position: absolute;
     top: 785px;
     left: 248px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nextBtn AiOutlineArrowRight{
+    width: 24px;
+    height: 24px;
+    color: white;
 }

@@ -1,0 +1,15 @@
+
+.boxes{ 
+    
+box-sizing: border-box;
+
+position: absolute;
+width: 188px;
+height: 180px;
+margin-left: 7px;
+margin-top: 312px;
+
+background: #FFFFFF;
+border: 5px solid #DD8A23;
+border-radius: 30px;
+}
