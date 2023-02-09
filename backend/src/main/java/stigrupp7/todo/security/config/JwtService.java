@@ -12,11 +12,22 @@ import java.util.Map;
 import java.util.function.Function;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import stigrupp7.todo.security.user.User;
 
 @Service
 public class JwtService {
 
   private static final String SECRET_KEY = "743777217A25432A462D4A614E635266556A586E3272357538782F413F442847";
+
+  public static Long getUserIdFromToken(String token) {
+    Claims claims = Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
+    try {
+      Integer userId = (Integer) claims.get("user_id");
+      return Long.valueOf(userId.toString());
+  } catch (NumberFormatException e) {
+    throw new RuntimeException("Unable to parse user id from token", e);
+  }
+  }
 
   public String extractUsername(String token) {
     return extractClaim(token, Claims::getSubject);
@@ -28,21 +39,21 @@ public class JwtService {
   }
 
   public String generateToken(UserDetails userDetails) {
-    return generateToken(new HashMap<>(), userDetails);
+    User user = (User) userDetails;
+    Map<String, Object> extraClaims = new HashMap<>();
+    extraClaims.put("user_id", user.getId());
+    return generateToken(extraClaims, userDetails);
   }
 
-  public String generateToken(
-      Map<String, Object> extraClaims,
-      UserDetails userDetails
-  ) {
+  public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
     return Jwts
-        .builder()
-        .setClaims(extraClaims)
-        .setSubject(userDetails.getUsername())
-        .setIssuedAt(new Date(System.currentTimeMillis()))
-        .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
-        .signWith(getSignInKey(), SignatureAlgorithm.HS256)
-        .compact();
+            .builder()
+            .setClaims(extraClaims)
+            .setSubject(userDetails.getUsername())
+            .setIssuedAt(new Date(System.currentTimeMillis()))
+            .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+            .signWith(getSignInKey(), SignatureAlgorithm.HS256)
+            .compact();
   }
 
   public boolean isTokenValid(String token, UserDetails userDetails) {

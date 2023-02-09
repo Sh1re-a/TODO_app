@@ -1,7 +1,7 @@
 package stigrupp7.todo.model;
 
 import jakarta.persistence.*;
-
+import stigrupp7.todo.security.user.User;
 
 
 @Entity
@@ -14,8 +14,24 @@ public class Todo {
     @Column
     private String description;
 
-    public Todo(String description) {
+    private Long user;
+
+
+    public Long getUser() {
+        return user;
+    }
+
+    public void setUser(Long user) {
+        this.user = user;
+    }
+
+
+
+    public Todo(String description, Long user) {
         this.description = description;
+        this.user = user;
+
+
     }
 
     public Todo() {

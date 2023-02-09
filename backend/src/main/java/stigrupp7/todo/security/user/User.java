@@ -1,11 +1,7 @@
 package stigrupp7.todo.security.user;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.util.Collection;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -15,6 +11,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import stigrupp7.todo.model.Todo;
 
 @Data
 @Builder
@@ -26,11 +23,14 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue
-    private Integer id;
-    private String firstname;
-    private String lastname;
+    private Long id;
+    private String fullname;
+
     private String email;
     private String password;
+
+    @OneToMany(mappedBy = "user")
+    private List<Todo> todos;
 
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -49,6 +49,8 @@ public class User implements UserDetails {
     public String getUsername() {
         return email;
     }
+
+
 
     @Override
     public boolean isAccountNonExpired() {

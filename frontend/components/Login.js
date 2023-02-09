@@ -7,12 +7,14 @@ import { AiOutlineUser } from 'react-icons/ai'
 
 
 
-export const Login = () => {
+export const Login = ({setPage}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
     const handleSubmit = async (event) => {
-    event.preventDefault();
+      try {
+    
     const response = await fetch("http://localhost:8080/api/v1/auth/authenticate", {
       method: "POST",
       headers: {
@@ -21,13 +23,16 @@ export const Login = () => {
       body: JSON.stringify({ email, password }),
     });
     const data = await response.json();
-    if (data !== null) {
+  
       localStorage.setItem("jwt", data.jwt);
       console.log("Det gick bra bror")
-    } else {
-        console.log("Det e cutt bror")
-        console.log(data)
+      setPage(2);
     } 
+    catch (error) {
+      console.error(error);
+      setError("Ett fel uppstod när du försökte logga in.");
+    }
+    
     
 }
     
@@ -52,8 +57,10 @@ export const Login = () => {
         <input className={styles.passwordInput} placeholder="Password" onChange={(event) => setPassword(event.target.value)}></input>
        </div>
 
+       <div className={styles.accountDontExists}>{error}</div>
+
        <div className={styles.fortgotBtn}>FORGOT PASSWORD?</div>
-       <div className={styles.signupBtn}>Sign Up</div>
+       <div className={styles.signupBtn} onClick={()=>setPage(1)}>Sign Up</div>
        <div className={styles.nextBtn}  onClick={handleSubmit}>
         <AiOutlineArrowRight
         style={{
