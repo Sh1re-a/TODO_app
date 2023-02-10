@@ -19,17 +19,21 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/todo/")
 public class TodoController {
-
+    @Autowired
     private final TodoService todoService;
+    @Autowired
+    private TodoRepository todoRepository;
 
     @Autowired
     public TodoController(TodoService todoService) {
         this.todoService = todoService;
     }
 
-    @GetMapping
-    public List<Todo> getAllTodos(){
-        return todoService.getAllTodos();
+    @GetMapping("getAllTodos")
+    public List<Todo> getAllTodos(@RequestHeader("Authorization") String authorization){
+        String token = authorization.substring(7);
+        Long userId = JwtService.getUserIdFromToken(token);
+        return todoRepository.findByUser(userId);
     }
 
     public ApplicationConfig applicationConfig;
