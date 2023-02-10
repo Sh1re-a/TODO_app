@@ -1,7 +1,6 @@
 .addNote{
     width: 307px;
-    height: 66px;
-    
+    height: 66px;    
 }
 
 .noteInput {
@@ -14,8 +13,8 @@
     background-color: white;
     border: 5px solid #DD8A23;
     border-radius: 20px;
+    color: black;
 }
-
 
 
 
