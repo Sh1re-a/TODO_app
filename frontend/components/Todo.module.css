@@ -33,4 +33,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border: none;
+}
+
+.boxes {
+    display: flex;
+    margin-top: 50%;
+    margin-left: 3px;
+    gap: 8px;
+    flex-wrap: wrap;
+    overflow-y: visible;
+    
+   
+}
+
+.box1 {
+    background: #FFFFFF;
+    border: 5px solid #DD8A23;
+    border-radius: 30px;
+    width: 188px;
+    height: 180px;
+    z-index: 1;
 }

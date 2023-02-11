@@ -1,6 +1,4 @@
 package stigrupp7.todo.security.auth;
-
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

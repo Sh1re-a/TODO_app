@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Background from './Background'
 //import { useAuth } from '../context/AuthContext'
 import styles from './Login.module.css'
@@ -166,6 +166,13 @@ export const Login = ({ setPage }) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    const localStorageToken = localStorage.getItem("jwt");
+    if (localStorageToken != null) {
+      setPage(2);
+    }
+  }, []);
+
   const handleSubmit = async (event) => {
     {
         event.preventDefault();
@@ -197,7 +204,7 @@ export const Login = ({ setPage }) => {
       });
       const data = await response.json();
 
-      localStorage.setItem("jwt", data.jwt);
+      localStorage.setItem("jwt",JSON.stringify(data.token));
       console.log("Login successful");
       setPage(2);
     } catch (error) {

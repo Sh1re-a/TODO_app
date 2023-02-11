@@ -1,58 +1,79 @@
-import React, { useEffect, useState } from 'react'
-import Background from './Background'
-import { getAllTodos } from './client'
-import styles from './Todo.module.css'
-import TodoCard from './TodoCard'
-import { addNewTodo } from './client'
+import React, { useState, useEffect } from 'react';
+import styles from './Todo.module.css';
+import Background from './background';
 
-
-function App(){
-  
-  const [todos, setTodos] = useState([])
-
-  const fetchTodos = () =>
-  getAllTodos()
-  .then(res => res.json())
-  .then(data => {
-    console.log(data);
-    setTodos(data);
-  })
+export const Todo = ({ setPage }) => {
+  const [todos, setTodos] = useState([]);
+  const [pushTodo, setPushTodo] = useState('');
+  const [description] = useState(pushTodo)
 
   useEffect(() => {
-    console.log("component is mounted")
+    async function fetchTodos() {
+      const token = localStorage.getItem('jwt');
+      if (!token) {
+        setPage(0);
+        return;
+      }
+      try {
+        const response = await fetch('http://localhost:8080/api/todo/getAllTodos', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const data = await response.json();
+        setTodos(data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
     fetchTodos();
   }, []);
-  
-  if(todos.length <= 0) {
-    return "no data"
-  }
 
-  return todos.map((todos, index) => {
-    return <p key={index}>{todos.id}</p>
-  })
-}
-
-
-export const Todo = () => {
+  const addTodo = async (todo) => {
+    setTodos([...todos, { description: pushTodo }]);
+    const token = localStorage.getItem('jwt');
+    if (!token) {
+      setPage(0);
+      return;
+    }
+    try {
+      const response = await fetch('http://localhost:8080/api/todo/addNewTodo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ description }),
+      });
+      const data = await response.json();
+      setTodos([...todos, data]);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <>
-    <Background/>
-    <div className={styles.addNote}>
-    <input className={styles.noteInput}  type='text' placeholder="Enter todo"  ></input>
+      <Background />
+      <div className={styles.addNote}>
+        <input
+          className={styles.noteInput}
+          type="text"
+          placeholder="Enter todo"
+          onChange={(event) => setPushTodo(event.target.value)}
+        />
+        <button className={styles.addBtn} onClick={() => addTodo()}>
+          ADD
+        </button>
+      </div>
 
-    <button className={styles.addBtn}  >ADD</button>   
-     
-    </div>
-
-  
-    
-    
-    <div className={styles.boxes}>
-    <div className={styles.box1}></div>
-    </div>
-    
+      <div className={styles.boxes}>
+        {todos.map((todo) => (
+          <div className={styles.box1} key={todo.id}>
+            <p>{todo.description}</p>
+          </div>
+        ))}
+      </div>
     </>
-  )
-  
-}
+  );
+};

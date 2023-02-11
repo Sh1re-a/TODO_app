@@ -77,7 +77,7 @@ export const Signup = ({setPage}) => {
         body: JSON.stringify({ fullName, email, password }),
       });
       const data = await response.json();
-      localStorage.setItem("jwt", data.jwt);
+      localStorage.setItem("jwt", data);
       console.log("Sign up successful");
       setPage(2);
     } catch (error) {
