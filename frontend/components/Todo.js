@@ -17,6 +17,7 @@ export const Todo = ({ setPage }) => {
       try {
         const response = await fetch('http://localhost:8080/api/todo/getAllTodos', {
           headers: {
+            'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
           },
         });
@@ -48,6 +49,8 @@ export const Todo = ({ setPage }) => {
       const data = await response.json();
       setTodos([...todos, data]);
     } catch (error) {
+      setPage(0);
+      localStorage.removeItem('jwt')
       console.error(error);
     }
   };

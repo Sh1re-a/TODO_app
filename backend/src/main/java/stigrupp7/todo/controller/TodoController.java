@@ -29,6 +29,7 @@ public class TodoController {
         this.todoService = todoService;
     }
 
+
     @GetMapping("getAllTodos")
     public List<Todo> getAllTodos(@RequestHeader("Authorization") String authorization){
         String token = authorization.substring(7);
@@ -37,6 +38,7 @@ public class TodoController {
     }
 
     public ApplicationConfig applicationConfig;
+
 
     @PostMapping("addNewTodo")
     public void addNewTodo(@RequestHeader("Authorization") String authorization,@RequestBody Todo todo){
