@@ -17,7 +17,9 @@ import java.security.Principal;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/todo/")
+
 public class TodoController {
     @Autowired
     private final TodoService todoService;
@@ -29,7 +31,7 @@ public class TodoController {
         this.todoService = todoService;
     }
 
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("getAllTodos")
     public List<Todo> getAllTodos(@RequestHeader("Authorization") String authorization){
         String token = authorization.substring(7);
@@ -37,9 +39,9 @@ public class TodoController {
         return todoRepository.findByUser(userId);
     }
 
-    public ApplicationConfig applicationConfig;
 
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("addNewTodo")
     public void addNewTodo(@RequestHeader("Authorization") String authorization,@RequestBody Todo todo){
         String token = authorization.substring(7);

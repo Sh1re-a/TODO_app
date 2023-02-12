@@ -5,11 +5,13 @@ import Background from './background';
 export const Todo = ({ setPage }) => {
   const [todos, setTodos] = useState([]);
   const [pushTodo, setPushTodo] = useState('');
-  const [description] = useState(pushTodo)
+  const [description, setDescription] = useState("");
 
   useEffect(() => {
     async function fetchTodos() {
-      const token = localStorage.getItem('jwt');
+      const bror = localStorage.getItem('jwt');
+      const token = bror.replace(/['"]+/g, '');
+      
       if (!token) {
         setPage(0);
         return;
@@ -28,11 +30,13 @@ export const Todo = ({ setPage }) => {
       }
     }
     fetchTodos();
-  }, []);
+  }, [todos]);
 
   const addTodo = async (todo) => {
     setTodos([...todos, { description: pushTodo }]);
-    const token = localStorage.getItem('jwt');
+    const bror = localStorage.getItem('jwt');
+    const token = bror.replace(/['"]+/g, '');
+    
     if (!token) {
       setPage(0);
       return;
@@ -49,8 +53,14 @@ export const Todo = ({ setPage }) => {
       const data = await response.json();
       setTodos([...todos, data]);
     } catch (error) {
-      setPage(0);
-      localStorage.removeItem('jwt')
+      if(error instanceof SyntaxError){
+
+      }
+      else {
+        localStorage.removeItem('jwt');
+        setPage(0);
+      }
+      
       console.error(error);
     }
   };
@@ -63,7 +73,7 @@ export const Todo = ({ setPage }) => {
           className={styles.noteInput}
           type="text"
           placeholder="Enter todo"
-          onChange={(event) => setPushTodo(event.target.value)}
+          onChange={(event) => setDescription(event.target.value)}
         />
         <button className={styles.addBtn} onClick={() => addTodo()}>
           ADD

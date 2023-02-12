@@ -206,6 +206,7 @@ export const Login = ({ setPage }) => {
 
       localStorage.setItem("jwt",JSON.stringify(data.token));
       console.log("Login successful");
+      console.log(data);
       setPage(2);
     } catch (error) {
       console.error(error);
