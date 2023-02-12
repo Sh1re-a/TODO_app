@@ -12,12 +12,13 @@ export const Todo = ({ setPage }) => {
   const addTodo = async (todo) => {
     
     const bror = localStorage.getItem('jwt');
-    const token = bror.replace(/['"]+/g, '');
-    
-    if (!token) {
+    if (!bror) {
       setPage(0);
       return;
     }
+    const token = bror.replace(/['"]+/g, '');
+    
+    
     try {
       const response = await fetch('http://localhost:8080/api/todo/addNewTodo', {
         method: 'POST',
@@ -50,11 +51,12 @@ export const Todo = ({ setPage }) => {
 
   const deleteTodo = async (id) => {
     const bror = localStorage.getItem('jwt');
+    if (!bror) {
+      setPage(0);
+      return;
+    }
       const token = bror.replace(/['"]+/g, '');
-      if (!token) {
-        setPage(0);
-        return;
-      }
+     
     try {
       const response = await fetch(`http://localhost:8080/api/todo/${id}`, {
         method: 'DELETE',
@@ -82,67 +84,19 @@ export const Todo = ({ setPage }) => {
     }
   }
 
-  const [editing, setEditing] = useState(false);
-  const [updatedTodo, setUpdatedTodo] = useState(todos.description);
-
-  const handleInputChange = (event) => {
-    setUpdatedTodo(event.target.value);
-  };
-
-  const handleEditTodo = () => {
-    setEditing(true);
-  };
-
-  const handleCancelEdit = () => {
-    setUpdatedTodo(todos.description);
-    setEditing(false);
-  };
-
-  const handleSaveEdit = async () => {
-    try {
-      const bror = localStorage.getItem('jwt');
-      const token = bror.replace(/['"]+/g, '');
-      if (!token) {
-        setPage(0);
-        return;
-      }
-
-      const response = await fetch(`http://localhost:8080/api/todo/${todo.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ description: updatedTodo }),
-      });
-
-      if (response.status === 403) {
-        localStorage.removeItem('jwt');
-        setPage(0);
-      }
-
-      editTodo({
-        ...todos,
-        description: updatedTodo,
-      });
-      setEditing(false);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
+ 
 
  
 
   useEffect(() => {
     async function fetchTodos() {
       const bror = localStorage.getItem('jwt');
-      const token = bror.replace(/['"]+/g, '');
-      
-      if (!token) {
+      if (!bror) {
         setPage(0);
         return;
       }
+      const token = bror.replace(/['"]+/g, '');
+      
       try {
         const response = await fetch('http://localhost:8080/api/todo/getAllTodos', {
           headers: {

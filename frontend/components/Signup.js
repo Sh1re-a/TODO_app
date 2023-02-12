@@ -38,7 +38,7 @@ import { AiOutlineUser } from 'react-icons/ai'
 
 export const Signup = ({setPage}) => {
 
-  const [fullName, setFullName] = useState("");
+  const [fullname, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -47,7 +47,7 @@ export const Signup = ({setPage}) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     
-    if (!fullName) {
+    if (!fullname) {
       setError("Full name is required");
       return;
     }
@@ -74,7 +74,7 @@ export const Signup = ({setPage}) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ fullName, email, password }),
+        body: JSON.stringify({ fullname, email, password }),
       });
       const data = await response.json();
       localStorage.setItem("jwt", JSON.stringify(data.token));
