@@ -6,7 +6,7 @@
     color: white;
 }
 
-.emailInput{
+/* .emailInput{
     border: 3px solid #DD8A23;
     height: 59px;
     width: 312px;
@@ -21,6 +21,7 @@
     color: #DD8A23;
     padding-left: 30px;
     margin-left: 30px;
+
 
 }
 
@@ -45,7 +46,41 @@
 .passwordInput {
 
 }
-
+ */
+ .emailInput {
+    border: 3px solid #DD8A23;
+    height: 59px;
+    width: 312px;
+    border-radius: 30px;
+    background: none;
+    color: white;
+    padding-left: 30px;
+  }
+  
+  .emailInput::placeholder {
+    font-size: 15px;
+    font-weight: 600;
+    color: #DD8A23;
+    padding-left: 30px;
+  }
+  
+  .passwordInput {
+    border: 3px solid #E4E4E5;
+    height: 59px;
+    width: 312px;
+    border-radius: 30px;
+    margin-top: 25px;
+    background: none;
+    color: white;
+    padding-left: 30px;
+  }
+  
+  .passwordInput::placeholder {
+    font-size: 15px;
+    font-weight: 600;
+    color: #E4E4E5;
+    padding-left: 30px;
+  }
 
 .fortgotBtn{
 position: absolute;
