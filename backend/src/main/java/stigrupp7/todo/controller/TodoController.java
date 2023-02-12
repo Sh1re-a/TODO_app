@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
@@ -50,11 +51,15 @@ public class TodoController {
         todoService.addNewTodo(todo);
 
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping(path = "{todoId}")
     public void deleteTodo(@PathVariable("todoId") Long todoId){
+
         todoService.deleteTodo(todoId);
+        
     }
+
+
 
     @PutMapping(path = "{todoId}")
     public void updateTodo(

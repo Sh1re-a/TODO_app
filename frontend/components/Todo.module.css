@@ -43,7 +43,9 @@
     margin-left: 3px;
     gap: 8px;
     flex-wrap: wrap;
-    overflow-y: visible;
+    overflow-y: scroll;
+    height: 80vh;
+    padding-bottom: 200px;
     
    
 }
@@ -55,4 +57,8 @@
     width: 188px;
     height: 180px;
     z-index: 1;
+}
+
+.box1 p {
+    margin-left: 25px;
 }
